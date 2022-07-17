@@ -4,7 +4,7 @@ from flask import request, abort
 from constants import JWT_ALG, JWT_SECRET
 
 
-def auth_requered(func):
+def auth_required(func):
     def wrapper(*args, **kwargs):
         if not "Authorization" in request.headers:
             abort(401)
@@ -18,7 +18,8 @@ def auth_requered(func):
         return func(*args, **kwargs)
     return wrapper
 
-def admin_requered(func):
+
+def admin_required(func):
     def wrapper(*args, **kwargs):
         if not "Authorization" in request.headers:
             abort(401)

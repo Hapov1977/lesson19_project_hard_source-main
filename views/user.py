@@ -3,7 +3,7 @@ from flask_restx import Resource, Namespace
 
 from dao.model.user import UserSchema
 from implemented import user_service
-from service.decorators import admin_requered
+from service.decorators import admin_required
 
 user_ns = Namespace('users')
 
@@ -15,7 +15,7 @@ class UsersView(Resource):
         res = UserSchema(many=True).dump(rs)
         return res, 200
 
-    @admin_requered
+    @admin_required
     def post(self):
         req_json = request.json
         user = user_service.create(req_json)
